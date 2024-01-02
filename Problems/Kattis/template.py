@@ -11,8 +11,9 @@ def debug(var, name=""):
     if DEBUG: 
         print(f"{name.upper()}: {var}")
 
-def intpls(): return map(int, sys.stdin.readline().strip().split())
-def listpls(): return list(map(int, sys.stdin.readline().strip().split()))
+def intspls(): 
+    ints = list(map(int, sys.stdin.readline().strip().split()))
+    return ints if len(ints)>1 else ints[0]
 def stringpls(): return sys.stdin.readline().strip()
 
 #####################
