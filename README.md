@@ -1,1 +1,1 @@
-"# CompetitiveProgramming" 
+# CompetitiveProgramming
