@@ -1,7 +1,9 @@
 import os
-###############
+from itertools import combinations, permutations
+from collections import deque, Counter, defaultdict
+########################################################
 DEBUG = os.path.isfile("C:\\Users\\jj720\\debug.txt") ##
-###############
+########################################################
 
 import sys 
 from math import ceil, floor
