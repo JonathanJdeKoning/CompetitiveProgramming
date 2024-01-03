@@ -18,6 +18,15 @@ def stringpls(): return sys.stdin.readline().strip()
 
 #####################
 def solve():
+    numapples = intspls()
+    apples = sorted(intspls(), reverse=True)
+
+    mid = len(apples)//2
+    perms = list(permutations(apples))
+    print(min([abs(sum(x[:mid])- sum(x[mid:])) for x in perms]))
+    
+
+
 
 
 

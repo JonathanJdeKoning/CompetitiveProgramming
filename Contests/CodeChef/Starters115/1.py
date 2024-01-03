@@ -18,7 +18,11 @@ def stringpls(): return sys.stdin.readline().strip()
 
 #####################
 def solve():
-
+    for _ in range(intspls()):
+        n = intspls()
+        one = n
+        two = int(ceil(n/2))
+        print(two,one)
 
 
 #########################

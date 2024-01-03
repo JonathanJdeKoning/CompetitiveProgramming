@@ -18,6 +18,24 @@ def stringpls(): return sys.stdin.readline().strip()
 
 #####################
 def solve():
+    tc = intspls()
+    for _ in range(tc):
+        n, x = intspls()
+        
+        if x == 0:
+            print(" ".join([str(x) for x in range(1,n+1)]))
+
+        elif x > n-2:
+            print(-1)
+            continue
+
+        elif x == n-2:
+            print(" ".join([str(n)]+list(map(str, list(range(1,n))))))
+
+        else:
+            stop = n-1
+            stopidx = ((n-2)-1) - x
+            print(" ".join([str(x) for x in range(1, stopidx+1)]+[str(stop)]+[str(x) for x in range(stopidx+1, stop)] + [str(n)]))
 
 
 

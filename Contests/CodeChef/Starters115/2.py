@@ -18,7 +18,23 @@ def stringpls(): return sys.stdin.readline().strip()
 
 #####################
 def solve():
+    tc = intspls()
+    for _ in range(tc):
+        leaves, large, small = intspls()
+        
+        pos = 0
+        small = int(floor(small/3))
+        small = min(small, large)
+        pos += small
 
+        large -= small
+        pos += int(floor(large/2))
+
+        if pos >= leaves:
+            print("YES")
+        else:
+            print("NO")
+            
 
 
 #########################
