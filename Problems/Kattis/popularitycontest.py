@@ -27,6 +27,18 @@ def stringpls(): return sys.stdin.readline().strip()             #
 ##################################################################
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def solve():
+    friends = {}
+    numfriends, numships = intspls()
+    for friend in range(1,numfriends+1):
+        friends[friend] = 0
+    for i in range(numships):
+        a, b = intspls()
+        friends[a]+=1
+        friends[b]+= 1
+    arr = []
+    for key, val in friends.items():
+        arr.append(str(val-key))
+    print(" ".join(arr))
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
