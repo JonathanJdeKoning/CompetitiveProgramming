@@ -4,12 +4,24 @@ from collections import deque, Counter, defaultdict
 ########################################################
 DEBUG = os.path.isfile("C:\\Users\\jj720\\debug.txt") ##
 ########################################################
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
 import sys 
 from math import ceil, floor
 def debug(var, name=""):
     if DEBUG: 
-        print(f"{name.upper()}: {var}")
+        #print(f"{name.upper()}: {var}")
+        print(f"{bcolors.WARNING}{name}: {var}{bcolors.ENDC}")
+    
 
 def intspls(): 
     ints = list(map(int, sys.stdin.readline().strip().split()))
@@ -23,7 +35,7 @@ def solve():
         street = stringpls()
         addydata = input().split()
         numaddys = int(addydata[0])
-
+        debug(street, "street")
         need = []
         while numaddys != 0:
             addys = input().split()
