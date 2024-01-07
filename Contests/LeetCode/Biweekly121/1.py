@@ -27,7 +27,30 @@ def stringpls(): return sys.stdin.readline().strip()             #
 ##################################################################
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def solve():
-
+    nums = [1]
+    maxlen = 1
+    currlen = 1
+    curr = nums[0]
+    lennums = [curr]
+    maxnums = [curr]
+    for i in nums[1:]:
+        if i == curr + 1:
+            currlen += 1
+            lennums.append(i)
+            if currlen > maxlen:
+                maxlen = currlen
+                maxnums = lennums
+        else:
+            break
+            
+        curr = i
+    tot = sum(maxnums)
+    while True:
+        if tot in nums:
+            tot += 1
+        else:
+            print(tot)
+            break
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
 ############################
