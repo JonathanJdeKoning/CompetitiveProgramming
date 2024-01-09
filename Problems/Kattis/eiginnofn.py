@@ -1,10 +1,11 @@
 from collections import defaultdict
 people = defaultdict(str)
 numpeople = int(input())
-
+seen = set()
 for _ in range(numpeople):
     data = input().split()
     first = data[0]
+    seen.add(first)
     if len(data) == 2:
         people[first] = data[1]
     else:
@@ -13,7 +14,7 @@ for _ in range(numpeople):
 knocks = int(input())
 for knock in range(knocks):
     data = input()
-    if data not in list(people.keys()):
+    if data not in seen:
         print("Neibb")
         continue
 
