@@ -3,7 +3,6 @@ import sys
 from math import ceil, floor, pi, sqrt
 from itertools import combinations, permutations
 from collections import deque, Counter, defaultdict
-from functools import cache, lrucache
 
 ##################################################################
 DEBUG = os.path.isfile("C:\\Users\\jj720\\debug.txt")            #
@@ -13,8 +12,6 @@ if DEBUG: os.system('color')                                     #
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ##################################################################
 prt = sys.stdout.write                                           #
-sys.setrecursionlimit(100000)                                    #
-mod = 1000000007                                                 #
 def debug(var, name=""):                                         #
     if DEBUG:                                                    #
         prt(f"{debugGreen}{name.upper()}: {var}{debugEnd}\n")    #
@@ -30,10 +27,22 @@ def stringpls(): return sys.stdin.readline().strip()             #
 ##################################################################
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def solve():
+    dimensions = [[3,4],[4,3]]
 
+    dim = list(map(lambda x:sqrt(x[0]**2+x[1]**2), dimensions))
+    maxi = max(dim)
+    pos = -1
+    for i, x in enumerate(dim):
+        if x == maxi:
+            yo = dimensions[i][0]*dimensions[i][1]
+            if  > pos:
+                pos = yo
+
+    return pos
+            
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
 ############################
 if __name__ == "__main__": #
-    solve()                #
+    print(solve())                #
 ############################

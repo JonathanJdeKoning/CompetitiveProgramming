@@ -1,8 +1,9 @@
 import os
 import sys 
-from math import ceil, floor, pi
+from math import ceil, floor, pi, sqrt
 from itertools import combinations, permutations
 from collections import deque, Counter, defaultdict
+from functools import cache, lrucache
 
 ##################################################################
 DEBUG = os.path.isfile("C:\\Users\\jj720\\debug.txt")            #
@@ -12,6 +13,8 @@ if DEBUG: os.system('color')                                     #
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ##################################################################
 prt = sys.stdout.write                                           #
+sys.setrecursionlimit(100000)                                    #
+mod = 1000000007                                                 #
 def debug(var, name=""):                                         #
     if DEBUG:                                                    #
         prt(f"{debugGreen}{name.upper()}: {var}{debugEnd}\n")    #

@@ -30,6 +30,10 @@ def stringpls(): return sys.stdin.readline().strip()             #
 ##################################################################
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def solve():
+    rows, cols, size = intspls()
+    mat = []
+    for _ in range(rows):
+        mat.append(list(stringpls()))
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
