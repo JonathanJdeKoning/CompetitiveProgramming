@@ -3,7 +3,5 @@ class Solution:
         words = defaultdict(list)
         for word in strs:
             words["".join(sorted(word))].append(word)
-        out = []
-        for key, val in words.items():
-            out.append(val)
-        return out
+        return words.values()
+         
