@@ -11,10 +11,9 @@ class Solution:
         while curr:
             temp = curr.next
             curr.next = prev
-            if temp == None:
-                return curr
             prev = curr
             curr = temp
+        return prev
 
 
         
