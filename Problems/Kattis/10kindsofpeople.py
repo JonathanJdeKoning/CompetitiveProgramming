@@ -1,0 +1,71 @@
+import os
+import sys 
+from math import ceil, floor, pi, sqrt
+from itertools import combinations, permutations
+from collections import deque, Counter, defaultdict
+
+##################################################################
+DEBUG = os.path.isfile("C:\\Users\\jj720\\debug.txt")            #
+debugGreen,debugCyan,debugEnd = '\033[92m','\033[96m','\033[0m'  #
+if DEBUG: os.system('color')                                     #
+##################################################################
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+##################################################################
+prt = sys.stdout.write                                           #
+sys.setrecursionlimit(100000)                                    #
+mod = 1000000007                                                 #
+def debug(var, name=""):                                         #
+    if DEBUG:                                                    #
+        prt(f"{debugGreen}{name.upper()}: {var}{debugEnd}\n")    #
+def out(x):                                                      #
+    prt(f"{debugCyan}{x}{debugEnd}\n")if DEBUG else prt(f"{x}\n")#
+if DEBUG: print = out                                            #
+def intspls():                                                   #
+    ints = list(map(int, sys.stdin.readline().strip().split()))  #
+    return ints if len(ints)>1 else ints[0]                      #
+def intpls(): return int(input())                                #
+def listpls(): return input().split()                            #
+def stringpls(): return sys.stdin.readline().strip()             #
+##################################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+def solve():
+    mat = []
+    r, c = intspls()
+    for _ in range(r):
+        mat.append(list(stringpls()))
+    numquers = intpls()
+    for quer in range(numquers):
+        y1, x1, y2, x2 = intspls()
+        numtype = mat[y1-1][x1-1]
+
+        q = deque([(y1-1, x1-1)])
+        seen = set()
+        while q:
+            curr = q.popleft()
+            if curr in seen: continue
+            y = curr[0]
+            x = curr[1]
+
+            if (y, x) == (y2-1, x2-1):
+                if numtype == "0":
+                    print("decimal")
+                    break
+                else:
+                    print("binary")
+                    break
+
+            directions = [[1,0],[0,1],[-1,0],[0,-1]]
+
+            for dir in directions:
+                dy = dir[0]
+                dx = dir[1]
+                if (y+dy, x+dx) not in seen:
+                    q.append((y+dy, x+dx))
+        print("neither")
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~
+############################
+if __name__ == "__main__": #
+    solve()                #
+############################
