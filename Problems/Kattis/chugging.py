@@ -29,7 +29,24 @@ def stringpls(): return sys.stdin.readline().strip()             #
 ##################################################################
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def solve():
+    bottles = intpls()
+    achug, adet = intspls()
+    bchug, bdet = intspls()
 
+    atot = 0
+    btot = 0
+    for i in range(bottles):
+        atot += achug
+        btot+= bchug
+
+        atot += adet*i
+        btot += bdet*i
+    if atot > btot:
+        print("Bob")
+    elif btot > atot:
+        print("Alice")
+    else:
+        print("=")
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
 ############################

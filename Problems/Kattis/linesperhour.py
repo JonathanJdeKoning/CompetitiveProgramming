@@ -29,7 +29,20 @@ def stringpls(): return sys.stdin.readline().strip()             #
 ##################################################################
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def solve():
+    n, lph = intspls()
+    probs = sorted([intpls() for x in range(n)])
+    totallines = lph*5
 
+    comp = 0
+    for prob in probs:
+        totallines -= prob
+        if totallines < 0:
+            print(comp)
+            return
+        comp += 1
+    print(comp)
+
+    
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
 ############################
