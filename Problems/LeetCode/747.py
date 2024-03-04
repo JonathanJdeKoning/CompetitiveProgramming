@@ -1,6 +1,6 @@
 class Solution:
     def dominantIndex(self, nums: List[int]) -> int:
-        mx = max(nums)
-        x = nums.index(mx)
-        nums.remove(mx)
-        return x if mx>= max(nums)*2 else -1
+        s = sorted(nums)
+        if s[-1] >= s[-2]*2:
+            return nums.index(max(nums))
+        return -1
