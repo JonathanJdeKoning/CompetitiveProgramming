@@ -19,9 +19,7 @@ while True:
                 p_val = max(my_p)
                 my_p.remove(p_val)
             except:
-                q = False
-                s = False
-                p = False
+                q, s, p = False, False, False
             
             if val != s_val: s = False
             if val != q_val: q = False

@@ -1,6 +1,6 @@
 import os
 import sys 
-from math import ceil, floor, pi, sqrt
+from math import ceil, floor, pi, sqrt, inf
 from itertools import combinations, permutations
 from collections import deque, Counter, defaultdict
 
@@ -29,10 +29,36 @@ def stringpls(): return sys.stdin.readline().strip()             #
 ##################################################################
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def solve():
+    length = int(input())
+    road = input()
+    ones = road.count("1")
+    zeros = 0 
+
+    if ones == 0:
+        print(length)
+        return
+
+    midpoint = length/2
+    best = 0
+    bestdist = abs(0-midpoint)
+    for i,x in enumerate(road,start=1):
+        if x == "1": ones -= 1
+        if x == "0": zeros += 1
+
+        if zeros >= ceil(i/2) and ones >= ceil((length-i)/2):
+            dist = abs(i-midpoint)
+            if dist < bestdist:
+                best = i
+                bestdist = dist
+    print(best)
+    return
+
+
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
 ############################
 if __name__ == "__main__": #
-    solve()                #
+    for _ in range(int(input())):
+        solve()                #
 ############################

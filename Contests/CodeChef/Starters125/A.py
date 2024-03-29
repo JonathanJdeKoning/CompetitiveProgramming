@@ -3,7 +3,6 @@ import sys
 from math import ceil, floor, pi, sqrt
 from itertools import combinations, permutations
 from collections import deque, Counter, defaultdict
-from functools import cache, lrucache
 
 ##################################################################
 DEBUG = os.path.isfile("C:\\Users\\jj720\\debug.txt")            #
@@ -30,10 +29,6 @@ def stringpls(): return sys.stdin.readline().strip()             #
 ##################################################################
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def solve():
-    rows, cols, size = intspls()
-    mat = []
-    for _ in range(rows):
-        mat.append(list(stringpls()))
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
