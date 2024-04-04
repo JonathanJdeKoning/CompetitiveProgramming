@@ -1,43 +1,20 @@
-import os
-import sys 
-from math import ceil, floor, pi, sqrt
-from itertools import combinations, permutations
-from collections import deque, Counter, defaultdict
+from collections import defaultdict
+nummessages = int(input())
+playas = defaultdict(list)
+wordses = defaultdict(int)
+for _ in range(nummessages):
+    data = input().split()
+    name = data[0]
+    words = data[1:]
+    playas[name].extend(words)
+    for word in words:
+        wordses[word] += 1
 
-##################################################################
-DEBUG = os.path.isfile("C:\\Users\\jj720\\debug.txt")            #
-debugGreen,debugCyan,debugEnd = '\033[92m','\033[96m','\033[0m'  #
-if DEBUG: os.system('color')                                     #
-##################################################################
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-##################################################################
-prt = sys.stdout.write                                           #
-sys.setrecursionlimit(100000)                                    #
-mod = 1000000007                                                 #
-def debug(var, name=""):                                         #
-    if DEBUG:                                                    #
-        prt(f"{debugGreen}{name.upper()}: {var}{debugEnd}\n")    #
-def out(x):                                                      #
-    prt(f"{debugCyan}{x}{debugEnd}\n")if DEBUG else prt(f"{x}\n")#
-if DEBUG: print = out                                            #
-def intspls():                                                   #
-    ints = list(map(int, sys.stdin.readline().strip().split()))  #
-    return ints if len(ints)>1 else ints[0]                      #
-def intpls(): return int(input())                                #
-def listpls(): return input().split()                            #
-def stringpls(): return sys.stdin.readline().strip()             #
-##################################################################
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def solve():
-    users = intpls()
-    log = defaultdict(set)
-    for _ in range(users):
-        data = listpls()
-        log[data[0]] = set(data[1:])
-    debug(log, "log")
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~
-############################
-if __name__ == "__main__": #
-    solve()                #
-############################
+setts = list(playas.values())
+start = set(setts[0])
+for c in setts[1:]:
+    start = start.intersection(c)
+if not start:
+    print("ALL CLEAR")
+start = list(start)
+print("\n".join(sorted(start, key=lambda x:(-wordses[x], x))))
