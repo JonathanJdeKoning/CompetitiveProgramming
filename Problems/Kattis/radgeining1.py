@@ -1,18 +1,11 @@
-def solve():
-    n, numqs = map(int, input().split())
-    arr = ["?"]*n
-    
-    for _ in range(numqs):
-        begin, s= input().split()
-        begin = int(begin)
-        for i, c in enumerate(s, start=(begin-1)):
-            curr = arr[i]
-            if curr == "?" or curr == c:
-                arr[i] = c
-            else:
-                return "Villa"
-    return "".join(arr)
-
-
-if __name__=="__main__":
-    print(solve())
+C=input
+def A():
+ F,G=map(int,C().split());A=['?']*F
+ for J in range(G):
+  H,I=C().split();B=int(H)-2
+  for D in I:
+   B+=1;E=A[B]
+   if E=='?'or E==D:A[B]=D
+   else:return'Villa'
+ return''.join(A)
+print(A())
