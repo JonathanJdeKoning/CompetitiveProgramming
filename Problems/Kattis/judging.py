@@ -1,11 +1,21 @@
 from collections import Counter
-numSubs = int(input())
-results = dict(Counter([input() for _ in range(2*numSubs)])).values()
-total = 0
-for res in results:
-    if res%2==1: 
-        total += (res-1)//2
-    else:
-        total += res//2
-print(total)
+n = int(input())
+kat = []
+dom = []
+poss = set()
+for _ in range(n):
+    verdict = input()
+    kat.append(verdict)
+    poss.add(verdict)
+for _ in range(n):
+    verdict = input()
+    dom.append(verdict)
+    poss.add(verdict)
 
+katD = dict(Counter(kat))
+domD = dict(Counter(dom))
+total = 0
+
+for p in poss:
+    total += min(katD.get(p,0), domD.get(p,0))
+print(total)
