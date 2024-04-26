@@ -35,7 +35,7 @@ def mid(nums):
                 running = False
                 rpost = next
                 end = num
-        if num != next:prev = num
+        prev = num
     if not rpost:
         rpost = float("inf")
         end = nums[-1]
@@ -63,11 +63,10 @@ def right(nums):
 
 
 def solve():
-    n = int(input())
     nums = list(map(int, input().split()))
-    if nums == sorted(nums): return "Yes"
-    if nums == sorted(nums, reverse=True): return "Yes"
-    
+    if nums == sorted(nums): return ""
+    if nums == sorted(nums, reverse=True): return ""
+    print(nums) 
 
     start = nums[0]
     for num in nums[1:]:
@@ -90,5 +89,6 @@ def solve():
     if nums[-2] > nums[-1]: return right(nums)
     return mid(nums)
     
-print(solve())
+for _ in range(256):
+    print(solve())
             
