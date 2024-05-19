@@ -3,7 +3,6 @@ import sys
 from math import ceil, floor, pi, sqrt
 from itertools import combinations, permutations
 from collections import deque, Counter, defaultdict
-from functools import lru_cache
 
 ##################################################################
 DEBUG = os.path.isfile("C:\\Users\\jj720\\debug.txt")            #
@@ -24,11 +23,31 @@ if DEBUG: print = out                                            #
 ##################################################################
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def solve():
+    n, k = map(int, input().split())
+    nums = list(map(int, input().split()))
+    
+    rep = None
+    for _ in range(k):
+        mx = 0
+        for i, num in enumerate(nums[:-1]):
+            diff = num - nums[i+1]
+            if abs(diff) > mx:
+                mx = abs(diff)
+
+                if diff > 0:
+                    rep = (i,nums[i+1])
+                elif diff < 0:
+                    rep  = (i+1, num)
+        if rep:
+            nums[rep[0]] = rep[1]
+    return sum(nums)
 
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-###################################
-if __name__ == "__main__":        #
-    for _ in range(int(input())): #
-        print(solve())            #
-###################################
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~
+############################
+if __name__ == "__main__": #
+    for _ in range(int(input())):
+        print(solve())                #
+############################

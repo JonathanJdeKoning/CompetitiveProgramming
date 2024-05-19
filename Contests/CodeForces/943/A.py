@@ -1,6 +1,6 @@
 import os
 import sys 
-from math import ceil, floor, pi, sqrt
+from math import ceil, floor, pi, sqrt, gcd
 from itertools import combinations, permutations
 from collections import deque, Counter, defaultdict
 from functools import lru_cache
@@ -24,6 +24,16 @@ if DEBUG: print = out                                            #
 ##################################################################
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def solve():
+    mx = -1
+    mxy = -1
+    x = int(input())
+
+    for y in range(x-1,0,-1):
+        if gcd(x,y)+1 > mx:
+            mx = gcd(x,y)+1
+            mxy = y
+
+    return mxy
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

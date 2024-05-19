@@ -24,6 +24,12 @@ if DEBUG: print = out                                            #
 ##################################################################
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def solve():
+    n = int(input())
+    nums  = list(map(int, input().split()))
+    target = nums[0]
+    for num in nums[1:]:
+        target |= num
+    print(target)
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

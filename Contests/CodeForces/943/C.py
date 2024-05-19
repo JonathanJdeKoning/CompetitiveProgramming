@@ -24,6 +24,17 @@ if DEBUG: print = out                                            #
 ##################################################################
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def solve():
+    n = int(input())
+    x = list(map(int, input().split()))
+    start = x[0]
+    prev = ((x[0]+1)*200000)-1
+    a = [x[0]+1,prev]
+
+    for num in x[1:]:
+        a.append(prev+num)
+        prev = prev+num
+    return " ".join([str(x) for x in a])
+   
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

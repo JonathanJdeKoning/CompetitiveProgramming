@@ -24,6 +24,19 @@ if DEBUG: print = out                                            #
 ##################################################################
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def solve():
+    a,b,c = map(int, input().split())
+    if sum([a,b,c]) %2 ==1: return -1
+    count = 0
+    new = sorted([a,b,c])
+    while True:
+        new = [x for x in sorted(new) if x != 0]
+        if len(new) < 2:
+            return count
+        else:
+            new[-1]-=1
+            new[-2]-=1
+        count += 1
+    return count
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

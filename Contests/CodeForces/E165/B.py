@@ -3,7 +3,6 @@ import sys
 from math import ceil, floor, pi, sqrt
 from itertools import combinations, permutations
 from collections import deque, Counter, defaultdict
-from functools import lru_cache
 
 ##################################################################
 DEBUG = os.path.isfile("C:\\Users\\jj720\\debug.txt")            #
@@ -24,11 +23,20 @@ if DEBUG: print = out                                            #
 ##################################################################
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def solve():
+    s = input().lstrip("0")
+    ones = 0
+    total = 0
+    if not s: return 0
+    for c in s:
+        if c == "1": ones += 1
+        if c == "0":
+            total += ones+1
+    return total
 
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-###################################
-if __name__ == "__main__":        #
-    for _ in range(int(input())): #
-        print(solve())            #
-###################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~
+############################
+if __name__ == "__main__": #
+    for _ in range(int(input())):
+        print(solve())                #
+############################
