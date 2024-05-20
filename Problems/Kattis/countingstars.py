@@ -1,76 +1,64 @@
-import os
-import sys 
-from math import ceil, floor, pi, sqrt
-from itertools import combinations, permutations
-from collections import deque, Counter, defaultdict
+import sys
+input = sys.stdin.readline
+class DisjointSetUnion:
+    def __init__(self, n):
+        self.parent = list(range(n))
+        self.size = [1] * n
+        self.num_sets = n
 
-##################################################################
-DEBUG = os.path.isfile("C:\\Users\\jj720\\debug.txt")            #
-debugGreen,debugCyan,debugEnd = '\033[92m','\033[96m','\033[0m'  #
-if DEBUG: os.system('color')                                     #
-##################################################################
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-##################################################################
-prt = sys.stdout.write                                           #
-sys.setrecursionlimit(100000)                                    #
-mod = 1000000007                                                 #
-def debug(var, name=""):                                         #
-    if DEBUG:                                                    #
-        prt(f"{debugGreen}{name.upper()}: {var}{debugEnd}\n")    #
-def out(x):                                                      #
-    prt(f"{debugCyan}{x}{debugEnd}\n")if DEBUG else prt(f"{x}\n")#
-if DEBUG: print = out                                            #
-def intspls():                                                   #
-    ints = list(map(int, sys.stdin.readline().strip().split()))  #
-    return ints if len(ints)>1 else ints[0]                      #
-def intpls(): return int(input())                                #
-def listpls(): return input().split()                            #
-def stringpls(): return sys.stdin.readline().strip()             #
-##################################################################
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def solve():
-    case = 0
-    while True:
-        case += 1
-        try:
-            rows, cols = list(map(int, input().split()))
-            mat = []
-            for _ in range(rows):
-                mat.append(list(input()))
-            count = 0
+    def find(self, a):
+        acopy = a
+        while a != self.parent[a]:
+            a = self.parent[a]
+        while acopy != a:
+            self.parent[acopy], acopy = a, self.parent[acopy]
+        return a
 
-            seen = set()
-            for i, row in enumerate(mat):
-                for j, x in enumerate(row):
-                    if x == "-" and (i,j) not in seen:
-                        count += 1
-                        q = deque([(i,j)])
-                        while q:
-                            debug(q, "q")
-                            curr = q.popleft()
-                            seen.add((curr[0],curr[1]))
-                            directions = [[0,1],[1,0],[0,-1],[-1,0]]
+    def union(self, a, b):
+        a, b = self.find(a), self.find(b)
+        if a != b:
+            if self.size[a] < self.size[b]:
+                a, b = b, a
 
-                            debug(curr, "curr") 
-                            for dy, dx in directions:
-                                y = curr[0]
-                                x = curr[1]
-                                y += dy
-                                x += dx
-                                
-                                if y >= rows or x >= cols or y<0 or x < 0 or (y,x) in seen:
-                                    continue
-                                if mat[y][x] == "-":
-                                    q.append((y,x))
-                            
-            debug(seen, "seen")
-            print(f"Case {case}: {count}")
+            self.num_sets -= 1
+            self.parent[b] = a
+            self.size[a] += self.size[b]
 
-        except EOFError:
-            break
+    def set_size(self, a):
+        return self.size[self.find(a)]
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~
-############################
-if __name__ == "__main__": #
-    solve()                #
-############################
+    def __len__(self):
+        return self.num_sets
+case = 0
+while True:
+    case += 1
+    try:
+        R, C = map(int, input().split())
+    except: break
+    mat = [list(input().strip()) for _ in range(R)]
+
+    dsu = DisjointSetUnion(R*C+1)
+    evil = R*C
+    for i, row in enumerate(mat):
+        for j, cell in enumerate(row):
+            
+            uuid = i*C+j
+            if cell == "#":
+                dsu.union(uuid, evil)
+            
+            try:
+                next = mat[i][j+1]
+                if next == cell:
+                    dsu.union(uuid, uuid+1)
+            except:pass
+
+            try:
+                down = mat[i+1][j]
+                if down == cell:
+                    dsu.union(uuid,uuid+C)
+            except:pass
+    print(f"Case {case}: {len(dsu)-1}")
+
+
+
+
