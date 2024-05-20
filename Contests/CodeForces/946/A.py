@@ -26,20 +26,14 @@ if DEBUG: print = out                                            #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def solve():
     ones, twos = map(int, input().split())
-    screens = 0
-    while True:
-        twosneed = ceil(twos/2)
-        leftover = None
-        if twos%2==0:
-            leftover = 7*twosneed
-        else:
-            leftover = 7*(twosneed-1)+11
-        ones -= leftover
-        need = twosneed
-        while ones >0:
-            need += 1
-            ones -= 15
-        return need
+    need = ceil(twos/2)
+
+    if twos%2==0:
+        left = 7*need
+    else:
+        left = 7*(need-1)+11
+    ones = max(ones-left,0)
+    return need + ceil(ones/15)
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

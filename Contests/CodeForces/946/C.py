@@ -13,7 +13,7 @@ if DEBUG: os.system('color')                                     #
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ##################################################################
 prt = sys.stdout.write                                           #
-inout = sys.stdin.readline
+input = sys.stdin.readline
 sys.setrecursionlimit(100000)                                    #
 mod = 1000000007                                                 #
 def debug(var, name=""):                                         #
@@ -27,31 +27,20 @@ if DEBUG: print = out                                            #
 def solve():
     total = 0
     n = int(input())
-    gen = defaultdict(int)
     s = list(map(int, input().split()))
-    first = defaultdict(int)
-    second = defaultdict(int)
-    third = defaultdict(int)
+    gen=a=b=c=defaultdict(int)
     for i in range(n-2):
         slc = s[i:i+3]
-        one = slc[:]
-        two = slc[:]
-        three = slc[:]
-        one[0] = "?"
-        two[1] = "?"
-        three[2] = "?"
-        total += first[tuple(one)]-gen[tuple(slc)]
-        total += second[tuple(two)]-gen[tuple(slc)]
-        total += third[tuple(three)]-gen[tuple(slc)]
+        
+        bc,ac,ab=slc[:],slc[:],slc[:]
+        bc[0]=ac[1]=ab[2]="?"
+        
+        total += a[tuple(bc)] + b[tuple(ac)] + c[tuple(ab)] - (3*gen[tuple(slc)])
+       
         gen[tuple(slc)] += 1
-        first[tuple(one)] += 1
-        second[tuple(two)] += 1
-        third[tuple(three)] += 1
-    #print(gen)
-    #print(first)
-    #print(second)
-    #print(third)
-    #for key, val in gen.items():
+        a[tuple(bc)]    += 1
+        b[tuple(ac)]    += 1
+        c[tuple(ab)]    += 1
     return total
 
 

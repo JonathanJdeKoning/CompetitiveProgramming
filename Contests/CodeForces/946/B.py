@@ -27,16 +27,13 @@ if DEBUG: print = out                                            #
 def solve():
     n = int(input())
     s = input()
-    mp = sorted(list(set(list(s))))
+    mp = sorted(set(list(s)))
     d = {}
     for i, c in enumerate(mp[:(len(mp)//2)+1]):
         if c not in d:
             d[c] = mp[-(i+1)]
             d[mp[-(i+1)]] = c
-    out = []
-    for c in s:
-        out.append(d[c])
-    return "".join(out)
+    return "".join([d[c] for c in s])
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ###################################
