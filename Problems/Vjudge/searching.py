@@ -1,0 +1,5 @@
+n = input()
+nums = list(map(int, input().split()))
+find = int(input())
+if find not in nums: print(-1)
+else: print(nums.index(find))

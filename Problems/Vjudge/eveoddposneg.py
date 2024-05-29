@@ -1,0 +1,6 @@
+n = int(input())
+nums = list(map(int, input().split()))
+print(f"Even: {len([x for x in nums if x%2==0])}")
+print(f"Odd: {len([x for x in nums if x%2!=0])}")
+print(f"Positive: {len([x for x in nums if x>0])}")
+print(f"Negative: {len([x for x in nums if x<0])}")
