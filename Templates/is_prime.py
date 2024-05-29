@@ -9,3 +9,9 @@ def is_prime(n):
              return False
          k += 2
     return True
+
+from time import sleep
+from inspect import getsource
+
+print(getsource(is_prime))
+sleep(10)

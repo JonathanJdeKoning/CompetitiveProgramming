@@ -13,6 +13,7 @@ if DEBUG: os.system('color')                                     #
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ##################################################################
 prt = sys.stdout.write                                           #
+inout = sys.stdin.readline
 sys.setrecursionlimit(100000)                                    #
 mod = 1000000007                                                 #
 def debug(var, name=""):                                         #

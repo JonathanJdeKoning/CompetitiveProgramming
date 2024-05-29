@@ -1,10 +1,8 @@
-
 class DisjointSetUnion:
     def __init__(self, n):
         self.parent = list(range(n))
         self.size = [1] * n
         self.num_sets = n
-        self.tot = [-1] * n
 
     def find(self, a):
         acopy = a
@@ -14,7 +12,7 @@ class DisjointSetUnion:
             self.parent[acopy], acopy = a, self.parent[acopy]
         return a
 
-    def union(self, a, b, w):
+    def union(self, a, b):
         a, b = self.find(a), self.find(b)
         if a != b:
             if self.size[a] < self.size[b]:
@@ -23,8 +21,6 @@ class DisjointSetUnion:
             self.num_sets -= 1
             self.parent[b] = a
             self.size[a] += self.size[b]
-            self.tot[a] &= self.tot[b]
-        self.tot[a] &= w
 
     def set_size(self, a):
         return self.size[self.find(a)]
