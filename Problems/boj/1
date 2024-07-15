@@ -1,0 +1,29 @@
+class Node():
+    def __init__(self, val=None, next=None):
+        self.next = next
+        self.val = val
+
+n, k =map(int, input().split())
+
+prev = Node(1, None)
+start = prev
+for i in range(2, n+1):
+    new = Node(i, None)
+    prev.next=new
+    prev =new 
+prev.next = start
+curr = start
+for _ in range(14):
+    prev = curr
+    curr = curr.next
+out = []
+while True:
+    for i in range(k):
+        prev = curr
+        curr = curr.next
+    out.append(curr.val)
+    prev.next = curr.next
+    if curr == prev:
+        print(str(out).replace("[","<").replace("]",">"))
+        break
+
