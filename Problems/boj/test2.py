@@ -1,3 +1,4 @@
+
 n = int(input())
 primes = [True]*(n+1)
 primes[0] = False
@@ -10,20 +11,17 @@ for i in range(n+1):
 
 s = 0
 b = 0
-p = -1
+bLast = False 
 for i in range(1,n+1):
     if not primes[i]:
         b += 1
-        q = i
+        bLast += 1
     else:
-        b -= 1
-        if b <0: b=0
-        if i-p <= 2:
-            s+=1
-            if i-p==2:
-                b+=1
+        if bLast:
+            b -= 1
+            s +=2 
         else:
-            s+= 2
-        p = i
-    print(b, s)
+            s += 1
+        bLast = False
+print(b, s)
 
