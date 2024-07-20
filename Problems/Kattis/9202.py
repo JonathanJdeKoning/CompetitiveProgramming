@@ -14,11 +14,13 @@ def dfs(r, c, i):
     return res
 
 points = {1:0,2:0,3:1,4:1,5:2,6:3,7:5,8:11}
-words = []
-for _ in range(int(input())):
-    words.append(input().strip())
+import json
+with open("words_dictionary.json", "r") as file:
+    words = json.load(file)
 
-input()
+words = [word for word in words.keys() if len(word) <= 8]
+
+
 for b in range(int(input())):
     total = 0
     numWords = 0
