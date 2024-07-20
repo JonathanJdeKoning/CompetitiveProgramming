@@ -1,33 +1,30 @@
 import heapq
-from collections import defaultdict
 n = int(input())
-mat = []
-for _ in range(n):
-    mat.append(list(map(int, input().split())))
-    
-def get_edges(n):
-    return mat[n-1]
-    
-seen = set()
-correct = []
+mat = [list(map(int, input().split())) for _ in range(n)]
 
-h = [(0,1,None)]
-found = False
-while h and not found:
-    currWeight, currNode, parent = heapq.heappop(h)
-    if currNode in seen: continue
-    seen.add(currNode)
-    correct.append((currNode, parent))
-    for edgeNode, edgeWeight in enumerate(get_edges(currNode),start=1):
-        if edgeNode in seen: continue
-        heapq.heappush(h, (edgeWeight, edgeNode, currNode))
-        if len(seen) == n:
-            found = True
-            break
-for u,v in correct:
-    if not u or not v: continue
-    print(u,v)
-        
-        
 
+best = [0]*n
+left = set(range(1,n))
+seen = [True]+[False]*(n-1)
+
+h = []
+for i in range(1,n):
+    heapq.heappush(h, (mat[0][i], 0, i))
+    best[i] = mat[0][i]
+
+edges = 0
+while True:
+    while True:
+        _, u, v = heapq.heappop(h)
+        if seen[v]: continue
+        break
+    print(u+1,v+1)
+    edges += 1
+    if edges == n-1: break
+    seen[v] = True
+    left.discard(v)
+    for w in left:
+        if mat[v][w] < best[w]:
+            best[w] = mat[v][w]
+            heapq.heappush(h, (mat[v][w], v, w))
 
