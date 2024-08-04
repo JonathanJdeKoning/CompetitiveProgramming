@@ -1,36 +1,24 @@
-for _ in range(int(input())):
-    n, k = map(int, input().split())
-    s = list(input().lstrip("0").rstrip("1"))
-    ones = s.count("1")
-    if ones <= k or len(s)-ones <= k:
-        print(0); continue
-    
-    impact = []
-    currimp = 0
-    for i, c in enumerate(s):
-        if c == "1":
-            currimp += 1
-        else:
-            impact.append((currimp, i))
-            
-    currimp = 0
-    for i, c in enumerate(s[::-1]):
-        if c == "0":
-            currimp += 1
-        else:
-            impact.append((currimp, (n-i)-1))
-            
-    impact.sort(reverse=True)
-    for imp, idx in impact[:k]:
-        s[idx] = str(int(s[idx])^1)
-        
-    total = 0
-    ones = 0
-    for c in s:
-        if c == "1":
-            ones += 1
-        else:
-            total += ones
-    print(total)
-    
-    
+def z_function(S):
+    """
+    Z Algorithm in O(n)
+    :param S: text string to process
+    :return: the Z array, where Z[i] = length of the longest common prefix of S[i:] and S
+    """
+
+    n = len(S)
+    Z = [0] * n
+    l = r = 0
+
+    for i in range(1, n):
+        z = Z[i - l]
+        if i + z >= r:
+            z = max(r - i, 0)
+            while i + z < n and S[z] == S[i + z]:
+                z += 1
+
+            l, r = i, i + z
+
+        Z[i] = z
+
+    Z[0] = n
+    return Z
