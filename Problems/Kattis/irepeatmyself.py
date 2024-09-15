@@ -1,9 +1,12 @@
-for _ in range(int(input())):
+from functools import reduce
+factors = lambda n : set(reduce(list.__add__, ([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0)))
+
+n = int(input())
+for _ in range(n):
     s = input()
-    l= len(s)
-    for i in range(l):
-        if l%(i+1) != 0: continue
-        
-        if s[:i+1]*(l//(i+1)) == s:
-            print(i+1)
+    fs = factors(len(s))
+
+    for f in sorted(list(fs)):
+        if s[:f] * (len(s)//f) == s:
+            print(f)
             break

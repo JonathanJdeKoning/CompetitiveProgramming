@@ -1,63 +1,35 @@
-class Primes:
-    def __init__(self, n):  # O(N)
-        self.n = n
-        self.primes = primes = []
-        self.lp = lp = [0]*(n+1)
-        self.phi = phi = [0]*(n+1)
+import os
+import sys
+from typing import Any, Callable
+from functools import cache, reduce
+from collections import deque, defaultdict, Counter
+from math import ceil, floor, sqrt, gcd, lcm, factorial
+from heapq import heapify, heappop, heappush, nlargest, nsmallest
+from itertools import pairwise, groupby, chain, permutations, combinations
 
-        lp[1] = phi[1] = 1  # sig[1] = 1
-        for i in range(2, n+1):
-            if lp[i] == 0:
-                lp[i] = i
-                primes.append(i)
-                phi[i] = i-1  # sig[i] = i+1
-            for p in primes:
-                if i*p > n: break
-                lp[i*p] = p
-                if lp[i] == p:
-                    phi[i*p] = phi[i]*p  # sig[i*p] = sig[i]*(1+p) - sig[i//p]*p
-                    break
-                phi[i*p] = phi[i]*phi[p]
+OUTPUT, RESET = '[92m', '[0m'
+LOCAL = os.path.isfile('C:\\Users\\jj720\\cp.flag')
+ogprint = print
+print: Callable[[Any],None] = lambda text='', *args, **kwargs: ogprint(f"{OUTPUT}{text}{RESET}", *args, **kwargs) if LOCAL else ogprint(text, *args, **kwargs)
+def debug(val, name):   print(f"#{val}# DEBUG{{{name}}}")
+def outs(A, delim=" "): print(delim.join(map(str, A)))
+def xprint(s):          exit(print(s))
+def outmat(M):          list(map(outs, M))
+def ints():             return list(map(int, input().split()))
+def intmat(R):          return [ints() for _ in range(R)]
+def strmat(R):          return [list(input()) for _ in range(R)]
+def rotmat(M):          return list(zip(*M[::-1]))
+def isPowTwo(n):        return n > 0 and (n & (n - 1)) == 0
+def triangle(n):        return (n*(n+1))//2
+def allsubs(x):         return [x[i:j] for i in range(len(x)) for j in range(i+1,len(x)+1)]
+def factors(n):         return set(reduce(list.__add__,([i,n//i] for i in range(1,int(n**0.5)+1)if n%i==0)))
+def nCk(n,k):           return factorial(n)//(factorial(k)*factorial(n-k))
+def powerset(s):        return list(chain.from_iterable(combinations(s, r) for r in range(len(s)+1)))
 
-    def __getitem__(self, x):
-        if isinstance(x, slice):  # O((W+sqR)lglgR)
-            l, r = x.start or 0, x.stop
-            P = [True]*(r-l)
-            for i in range(2-l): P[i] = False
-            for p in self.primes:
-                if p*p > r: break
-                for j in range(max(p*p, (l+p-1)//p*p), r, p):
-                    P[j-l] = False
-            return P
-        if x < 2: return False
-        if x <= self.n: return self.lp[x] == x  # O(1)
-        for p in self.primes:  # O(sqX)
-            if p*p > x: break
-            if x%p == 0: return False
-        return True
+##########################################################
 
-    def factorization(self, x):
-        for p in self.primes:
-            if p*p > x: break
-            if x <= self.n: break
-            if x%p == 0:
-                cnt = 0
-                while x%p == 0: cnt += 1; x //= p
-                yield p, cnt
-        while 1 < x <= self.n:
-            p, cnt = self.lp[x], 0
-            while x%p == 0: cnt += 1; x //= p
-            yield p, cnt
-        if x >= self.n and x > 1:
-            yield x, 1
+def solve():
+    return([1,2,3])
+for _ in range(int(input())):
+    print(solve())
 
-    def factors(self, x):
-        res = [1]
-        for p, b in self.factorization(x):
-            n = len(res)
-            for j in range(1, b+1):
-                for d in res[:n]:
-                    res.append(d * p**j)
-        return res
-p = Primes(105000)
-print(p[99999])

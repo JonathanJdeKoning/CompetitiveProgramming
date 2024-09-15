@@ -1,14 +1,12 @@
-numpeople = int(input())
-
+N = int(input())
 people = list(map(int, input().split()))
+tada = []
 
+for i, num in enumerate(people, start=2):
+    tada.append((num, i))
 
-output = [1]
-for i in range(numpeople-1):
-    output.append(-1)
+tada.sort()
 
-for idx, person in enumerate(people):
-    output[person+1] = idx+2
-print(" ".join([str(x) for x in output]))
+print("1 " + " ".join([str(x[1]) for x in tada]))
     
     
