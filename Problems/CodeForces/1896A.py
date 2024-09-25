@@ -29,7 +29,6 @@ def powerset(s):        return list(chain.from_iterable(combinations(s, r) for r
 ##########################################################
 
 def solve():
-    N = int(input())
     A = ints()
     return "YES" if A[0] == 1 else "NO"
 for _ in range(int(input())):

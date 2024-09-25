@@ -21,9 +21,18 @@ def factors(n):         return set(reduce(list.__add__,([i,n//i] for i in range(
 def nCk(n,k):           return factorial(n)//(factorial(k)*factorial(n-k))
 def powerset(s):        return list(chain.from_iterable(combinations(s, r) for r in range(len(s)+1)))
 
-def solve():
-    ...
+R, C = ints()
+mat = rotmat([list(input()) for _ in range(R)])
+newmat = []
+#print("---------------")
+for col in mat:
+    newcol = "".join(col).split("#")
+    #print(f"{newcol=}")
+    for i, chunk in enumerate(newcol):
+        newcol[i] = "".join(sorted(chunk, reverse=True))
+    newcol = "#".join(newcol)
+    newmat.append(list(newcol))
 
-
-for _ in range(int(input())):
-    print(solve())
+newmat = rotmat(rotmat(rotmat(newmat)))[::-1]
+for row in newmat[::-1]:
+    print("".join(row))

@@ -21,9 +21,21 @@ def factors(n):         return set(reduce(list.__add__,([i,n//i] for i in range(
 def nCk(n,k):           return factorial(n)//(factorial(k)*factorial(n-k))
 def powerset(s):        return list(chain.from_iterable(combinations(s, r) for r in range(len(s)+1)))
 
-def solve():
-    ...
+s = input()
+fq = Counter(s)
+eves, odds = [], []
+for k,v in fq.items():
+    if v%2==0:
+        eves.append((k,v))
+    else:
+        odds.append((k,v))
 
+if len(odds) >1: xprint("NO SOLUTION")
+if not odds: odds = [("", 1)]
+new = []
+for k,v in eves:
+    new.append(k*(v//2))
 
-for _ in range(int(input())):
-    print(solve())
+a = "".join(new)
+
+print(a+ odds[0][0]*odds[0][1] + a[::-1])

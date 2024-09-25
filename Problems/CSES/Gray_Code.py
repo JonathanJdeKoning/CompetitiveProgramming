@@ -21,9 +21,14 @@ def factors(n):         return set(reduce(list.__add__,([i,n//i] for i in range(
 def nCk(n,k):           return factorial(n)//(factorial(k)*factorial(n-k))
 def powerset(s):        return list(chain.from_iterable(combinations(s, r) for r in range(len(s)+1)))
 
-def solve():
-    ...
+def gray(n):
+    if n==1: return ["0", "1"]
 
+    old = gray(n-1)
+    ref = ["1" + x for x in old[::-1]]
 
-for _ in range(int(input())):
-    print(solve())
+    old = ["0" + x for x in old]
+
+    return old+ ref
+
+print("\n".join(gray(int(input()))))

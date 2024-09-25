@@ -21,9 +21,36 @@ def factors(n):         return set(reduce(list.__add__,([i,n//i] for i in range(
 def nCk(n,k):           return factorial(n)//(factorial(k)*factorial(n-k))
 def powerset(s):        return list(chain.from_iterable(combinations(s, r) for r in range(len(s)+1)))
 
-def solve():
-    ...
+n = int(input())
+t = triangle(n)
+if t%2==1: xprint("NO")
+target = (t//2)
+a = set(list(range(1,n+1)))
+b = set()
+total = 0
+curr = 1
+if n%2==1:
+    while total != target:
+        total += curr
+        total +=n-curr
+        b.add(curr)
+        b.add(n-curr)
+        a.discard(curr)
+        a.discard(n-curr)
 
+        curr += 1
+else:
+    while total != target:
+        total += curr
+        total +=(n+1)-curr
+        b.add(curr)
+        b.add((n+1)-curr)
+        a.discard(curr)
+        a.discard((n+1)-curr)
 
-for _ in range(int(input())):
-    print(solve())
+        curr += 1
+print("YES")
+print(len(a))
+outs(a)
+print(len(b))
+outs(b)

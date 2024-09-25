@@ -21,9 +21,11 @@ def factors(n):         return set(reduce(list.__add__,([i,n//i] for i in range(
 def nCk(n,k):           return factorial(n)//(factorial(k)*factorial(n-k))
 def powerset(s):        return list(chain.from_iterable(combinations(s, r) for r in range(len(s)+1)))
 
-def solve():
-    ...
+fq = Counter(allsubs(input()))
+
+new = sorted(list(fq.items()), key=lambda x:(-x[1], x[0]))
+
+for k,v in new:
+    print(f"{v} {k}")
 
 
-for _ in range(int(input())):
-    print(solve())

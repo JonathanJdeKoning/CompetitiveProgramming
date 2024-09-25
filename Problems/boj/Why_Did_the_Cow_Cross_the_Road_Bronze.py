@@ -21,9 +21,16 @@ def factors(n):         return set(reduce(list.__add__,([i,n//i] for i in range(
 def nCk(n,k):           return factorial(n)//(factorial(k)*factorial(n-k))
 def powerset(s):        return list(chain.from_iterable(combinations(s, r) for r in range(len(s)+1)))
 
-def solve():
-    ...
 
-
+ans = 0
+side = {}
 for _ in range(int(input())):
-    print(solve())
+    cow, curr = ints()
+    if cow not in side:
+        side[cow] = curr
+    else:
+        if curr != side[cow]:
+            ans +=1
+        side[cow] = curr
+
+print(ans)

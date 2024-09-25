@@ -1,5 +1,6 @@
 import os
 import sys
+from typing import Any, Callable
 from functools import cache, reduce
 from collections import deque, defaultdict, Counter
 from math import ceil, floor, sqrt, gcd, lcm, factorial
@@ -21,9 +22,33 @@ def factors(n):         return set(reduce(list.__add__,([i,n//i] for i in range(
 def nCk(n,k):           return factorial(n)//(factorial(k)*factorial(n-k))
 def powerset(s):        return list(chain.from_iterable(combinations(s, r) for r in range(len(s)+1)))
 
-def solve():
-    ...
+numCols, numQuests = ints()
+height = ints()
+
+quests = []
+lessdiff = [0] + [b-a for a, b in pairwise(height)]
+curr = 0
+for i, num in enumerate(lessdiff):
+    if num < 0:
+        curr += num
+    lessdiff[i] = curr
+
+height = height[::-1]
+morediff = [0] + [b-a for a, b in pairwise(height)]
+morediff = morediff[::-1]
+
+curr = 0
+for i in range(len(morediff)-1, -1, -1):
+    if morediff[i] < 0 : curr += morediff[i]
+    morediff[i] = curr
 
 
-for _ in range(int(input())):
-    print(solve())
+for _ in range(numQuests):
+    a,b = ints()
+    if a < b:
+        print(-(lessdiff[b-1] - lessdiff[a-1]))
+    else:
+        print((morediff[a-1] - morediff[b-1]))
+    
+
+

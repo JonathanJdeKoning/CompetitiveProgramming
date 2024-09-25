@@ -21,9 +21,20 @@ def factors(n):         return set(reduce(list.__add__,([i,n//i] for i in range(
 def nCk(n,k):           return factorial(n)//(factorial(k)*factorial(n-k))
 def powerset(s):        return list(chain.from_iterable(combinations(s, r) for r in range(len(s)+1)))
 
-def solve():
-    ...
+N= int(input())
 
+A = ints()
+ans = []
+for i in range(1, N+1):
+    curr = i
+    seen = set()
+    while True:
+        if curr not in seen:
+            seen.add(curr)
+        else:
+            ans.append(curr)
+            break
 
-for _ in range(int(input())):
-    print(solve())
+        curr = A[curr-1]
+
+outs(ans)

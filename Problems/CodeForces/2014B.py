@@ -22,8 +22,23 @@ def nCk(n,k):           return factorial(n)//(factorial(k)*factorial(n-k))
 def powerset(s):        return list(chain.from_iterable(combinations(s, r) for r in range(len(s)+1)))
 
 def solve():
-    ...
-
+    N, K = ints()
+    base = N
+    back = (N-K)+1
+    numOdds = None
+    numNums = (base-back)+1
+    if numNums == 1:
+        numOdds = base%2
+    elif base%2==0 and back%2==0:
+        numOdds = (numNums-1)//2
+    elif base%2==1 and back%2==1:
+        numOdds = (numNums+1)//2
+    else:
+        numOdds = numNums//2
+    #print(f"{numOdds=}")
+    if numOdds%2==1:
+        return "NO"
+    else: return "YES"
 
 for _ in range(int(input())):
     print(solve())

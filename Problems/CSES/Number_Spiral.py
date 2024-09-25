@@ -21,9 +21,31 @@ def factors(n):         return set(reduce(list.__add__,([i,n//i] for i in range(
 def nCk(n,k):           return factorial(n)//(factorial(k)*factorial(n-k))
 def powerset(s):        return list(chain.from_iterable(combinations(s, r) for r in range(len(s)+1)))
 
-def solve():
-    ...
 
+def solve(y,x):
+    if (y,x) == (1,1): return 1
+    if x > y:
+        if x%2==1:
+            start = x**2
+            return start - (y-1)
+        else:
+            start = (x-1)**2+1
+            return start + (y-1)
+        
+    
+    else:
+        if y%2==0:
+            start = y**2
+            return start-(x-1)
+        else:
+            start = (y-1)**2+1
+            return start + (x-1)
 
 for _ in range(int(input())):
-    print(solve())
+    y,x = ints()
+    print(solve(y,x))
+
+
+
+
+

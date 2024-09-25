@@ -20,10 +20,28 @@ def allsubs(x):         return [x[i:j] for i in range(len(x)) for j in range(i+1
 def factors(n):         return set(reduce(list.__add__,([i,n//i] for i in range(1,int(n**0.5)+1)if n%i==0)))
 def nCk(n,k):           return factorial(n)//(factorial(k)*factorial(n-k))
 def powerset(s):        return list(chain.from_iterable(combinations(s, r) for r in range(len(s)+1)))
+N = int(input())
+dirty = ints()[::-1]
 
-def solve():
-    ...
+currdir = []
+currpush = dirty.pop()
+ans = 0
+def get(i):
+    return sum([i-x for x in currdir]) 
+
+for i in range(1,366):
+    if i == currpush:
+        currdir.append(currpush)
+        if dirty: currpush = dirty.pop()
+
+    if get(i+1) >=20:
+        ans += 1
+        currdir = []
+
+if currdir:
+    ans += 1
+
+print(ans)
 
 
-for _ in range(int(input())):
-    print(solve())
+

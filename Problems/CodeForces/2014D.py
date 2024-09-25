@@ -22,8 +22,13 @@ def nCk(n,k):           return factorial(n)//(factorial(k)*factorial(n-k))
 def powerset(s):        return list(chain.from_iterable(combinations(s, r) for r in range(len(s)+1)))
 
 def solve():
-    ...
+    N,D,K = ints()
+    jobs = []
+    for _ in range(K):
+        start, end = ints()
+        jobs.append((start, end))
 
+    
 
 for _ in range(int(input())):
     print(solve())

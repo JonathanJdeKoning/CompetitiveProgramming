@@ -21,9 +21,16 @@ def factors(n):         return set(reduce(list.__add__,([i,n//i] for i in range(
 def nCk(n,k):           return factorial(n)//(factorial(k)*factorial(n-k))
 def powerset(s):        return list(chain.from_iterable(combinations(s, r) for r in range(len(s)+1)))
 
-def solve():
-    ...
-
+d = 0
+p = 0
 
 for _ in range(int(input())):
-    print(solve())
+    winner = input()
+    if winner == "D":
+        d += 1
+    else:
+        p += 1
+
+    if abs(d-p) >= 2:
+        xprint(f"{d}:{p}") 
+print(f"{d}:{p}")

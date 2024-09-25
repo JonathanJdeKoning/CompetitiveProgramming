@@ -5,7 +5,7 @@ from collections import deque, defaultdict, Counter
 from math import ceil, floor, sqrt, gcd, lcm, factorial
 from heapq import heapify, heappop, heappush, nlargest, nsmallest
 from itertools import pairwise, groupby, chain, permutations, combinations
-
+from decimal import Decimal
 def debug(val, name):   print(f"#{val}# DEBUG{{{name}}}")
 def outs(A, delim=" "): print(delim.join(map(str, A)))
 def xprint(s):          exit(print(s))
@@ -22,8 +22,30 @@ def nCk(n,k):           return factorial(n)//(factorial(k)*factorial(n-k))
 def powerset(s):        return list(chain.from_iterable(combinations(s, r) for r in range(len(s)+1)))
 
 def solve():
-    ...
+    N = int(input())
+    A = sorted(ints())
+    
+    if len(A) < 3: return -1
 
+    low = 0
+    high = Decimal(1e12)
+    def cond(n):
+        return n > len(A)/2
+    tot = sum(A)
+    while low < high:
+        mid = (low+high)//2
+        A[-1] += mid
+
+        check = Decimal((tot+mid)/len(A)) / 2
+        
+        numUnhappy = len([x for x in A if x < check])
+        if cond(numUnhappy):
+            high = mid
+        else:
+            low = mid +1
+
+        A[-1] -= mid
+    return int(low)
 
 for _ in range(int(input())):
     print(solve())

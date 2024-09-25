@@ -1,35 +1,40 @@
-import os
-import sys
-from typing import Any, Callable
-from functools import cache, reduce
-from collections import deque, defaultdict, Counter
-from math import ceil, floor, sqrt, gcd, lcm, factorial
-from heapq import heapify, heappop, heappush, nlargest, nsmallest
-from itertools import pairwise, groupby, chain, permutations, combinations
+from random import randint, seed
 
-OUTPUT, RESET = '[92m', '[0m'
-LOCAL = os.path.isfile('C:\\Users\\jj720\\cp.flag')
-ogprint = print
-print: Callable[[Any],None] = lambda text='', *args, **kwargs: ogprint(f"{OUTPUT}{text}{RESET}", *args, **kwargs) if LOCAL else ogprint(text, *args, **kwargs)
-def debug(val, name):   print(f"#{val}# DEBUG{{{name}}}")
-def outs(A, delim=" "): print(delim.join(map(str, A)))
-def xprint(s):          exit(print(s))
-def outmat(M):          list(map(outs, M))
-def ints():             return list(map(int, input().split()))
-def intmat(R):          return [ints() for _ in range(R)]
-def strmat(R):          return [list(input()) for _ in range(R)]
-def rotmat(M):          return list(zip(*M[::-1]))
-def isPowTwo(n):        return n > 0 and (n & (n - 1)) == 0
-def triangle(n):        return (n*(n+1))//2
-def allsubs(x):         return [x[i:j] for i in range(len(x)) for j in range(i+1,len(x)+1)]
-def factors(n):         return set(reduce(list.__add__,([i,n//i] for i in range(1,int(n**0.5)+1)if n%i==0)))
-def nCk(n,k):           return factorial(n)//(factorial(k)*factorial(n-k))
-def powerset(s):        return list(chain.from_iterable(combinations(s, r) for r in range(len(s)+1)))
+n = 99
+seed(69)
+for _ in range(n):
+    N = randint(1,10)
+    K = randint(1,N)
 
-##########################################################
+    total = 0
+    for i in range(1, N):
+        total += i**i
 
-def solve():
-    return([1,2,3])
-for _ in range(int(input())):
-    print(solve())
+    for i in range(1,(N-K)+1):
+        total -= i**i
+    if total%2 ==0:
+        aAns = ("YES")
+    else:
+        aAns = ("NO")
 
+    base = N
+    back = (N-K)+1
+    numOdds = None
+    numNums = (base-back)+1
+    if numNums == 1:
+        numOdds = base%2
+    elif base%2==0 and back%2==0:
+        numOdds = (numNums-1)//2
+    elif base%2==1 and back%2==1:
+        numOdds = (numNums+1)%2
+    else:
+        numOdds = numNums//2
+    #print(f"{numOdds=}")
+    if numOdds%2==1:
+        bAns = "NO"
+    else: bAns ="YES"
+
+    if aAns != bAns:
+        print(f"OOP: {N}, {K}")
+    else:
+        print("YEP")

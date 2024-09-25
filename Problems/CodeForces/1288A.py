@@ -21,9 +21,26 @@ def factors(n):         return set(reduce(list.__add__,([i,n//i] for i in range(
 def nCk(n,k):           return factorial(n)//(factorial(k)*factorial(n-k))
 def powerset(s):        return list(chain.from_iterable(combinations(s, r) for r in range(len(s)+1)))
 
+
+
 def solve():
-    ...
+    N,D = ints()
 
+    def days(x):
+        return x + ceil(D / (x+1)) 
 
+    mn = days(0)
+    curr = 1
+    while True:
+        dd = days(curr)
+        if dd > mn:
+            break
+        else:
+            mn = dd
+        curr += 1
+
+    if mn <= N:
+        return "YES"
+    else: return "NO"
 for _ in range(int(input())):
     print(solve())

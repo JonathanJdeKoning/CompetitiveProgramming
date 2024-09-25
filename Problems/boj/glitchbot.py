@@ -21,9 +21,34 @@ def factors(n):         return set(reduce(list.__add__,([i,n//i] for i in range(
 def nCk(n,k):           return factorial(n)//(factorial(k)*factorial(n-k))
 def powerset(s):        return list(chain.from_iterable(combinations(s, r) for r in range(len(s)+1)))
 
-def solve():
-    ...
+x,y = ints()
+N = int(input())
+
+insts = [input() for _ in range(N)]
+l = {(1,0):(0,-1),(-1,0):(0,1), (0,-1):(-1,0),(0,1):(1,0)}
+r = {(1,0):(0,1), (-1,0):(0,-1),(0,1):(-1,0),(0,-1):(1,0)}
+def simulate(insts):
+    y,x = 0,0
+    dy,dx = (1,0)
+
+    for i in insts:
+        if i == "Forward":
+            y += dy
+            x += dx
+        elif i == "Left":
+            dy,dx = l[(dy,dx)]
+        else:
+            dy,dx = r[(dy,dx)]
+    return x,y
 
 
-for _ in range(int(input())):
-    print(solve())
+
+for i in range(N):
+    old = insts[i]
+    for inst in ["Forward", "Left", "Right"]:
+        insts[i] = inst
+        if simulate(insts) == (x,y):
+            exit(print(f"{i+1} {inst}"))
+    insts[i] = old
+
+

@@ -21,9 +21,30 @@ def factors(n):         return set(reduce(list.__add__,([i,n//i] for i in range(
 def nCk(n,k):           return factorial(n)//(factorial(k)*factorial(n-k))
 def powerset(s):        return list(chain.from_iterable(combinations(s, r) for r in range(len(s)+1)))
 
-def solve():
-    ...
+N = int(input())
 
+runners = []
+for _ in range(N):
+    name, first, rest = input().split()
+    first = float(first)
+    rest = float(rest)
+    runners.append((rest, first, name))
 
-for _ in range(int(input())):
-    print(solve())
+runners.sort()
+mx = 99999999999
+mxteam = []
+
+for i in range(len(runners)):
+    ans = runners[i][1]
+    team = [runners[i][2]]
+    for j in range(len(runners)):
+        if j ==i:continue
+        ans += runners[j][0]
+        team.append(runners[j][2])
+        if len(team) == 4:
+            if ans < mx:
+                mx = ans
+                mxteam = team
+            break
+print(mx)
+print(*mxteam, sep="\n")
