@@ -21,30 +21,12 @@ def factors(n):         return set(reduce(list.__add__,([i,n//i] for i in range(
 def nCk(n,k):           return factorial(n)//(factorial(k)*factorial(n-k))
 def powerset(s):        return list(chain.from_iterable(combinations(s, r) for r in range(len(s)+1)))
 
-N = int(input())
+for i in range(int(input())):
+    N= int(input())
+    A = sorted(ints())
+    B = sorted(ints(), reverse=True)
+    pref = f"Case #{i+1}: "
+    ans = sum(a*b for a,b in zip(A,B))
+    print(f"{pref}{ans}")
 
-A = []
-for _ in range(N):
-    A.append(int(input()))
-f = factors(N)
-f.discard(1)
-ans = []
 
-for fact in list(f):
-    inv = N//fact
-    mat = []
-    for i in range(0, len(A), inv):
-        mat.append(A[i:i+inv])
-    
-    bad = False
-    for i in range(len(mat)):
-        for j in range(i+1, len(mat)):
-            if max(mat[i]) > min(mat[j]):
-                bad = True
-
-    if not bad:
-        ans.append(fact)
-
-if ans:
-    print("\n".join(map(str, sorted(ans))))
-else: print(-1)

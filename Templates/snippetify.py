@@ -1,3 +1,4 @@
+s = """
 class Trie:
     def __init__(self, *words):
         self.root = {}
@@ -25,3 +26,7 @@ class Trie:
             current_dict = current_dict[letter]
             nodes.append(current_dict)
         del current_dict["_end_"]
+"""
+
+for line in s.split("\n"):
+    print('"' + line.replace('"', '\\"') + '",')
