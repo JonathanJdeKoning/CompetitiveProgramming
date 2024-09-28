@@ -1,5 +1,1 @@
-a,b,c,d = list(map(int, input().split()))
-
-slist = sorted([a,b,c,d])
-
-print(slist[0]*slist[2])
+print(eval("*".join(map(str,sorted(map(int,input().split()))[::2]))))
