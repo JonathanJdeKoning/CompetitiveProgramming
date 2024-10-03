@@ -1,11 +1,13 @@
+
 import sys
 input = sys.stdin.readline
-numstrings = int(input())
-strings = [input()[:-1] for x in range(numstrings)]
-for _ in range(numstrings-1):
-    a,b = map(int, input().split())
-    a -= 1
-    b -= 1
-    strings[a] += strings[b]
-    strings[b] = ""
-sys.stdout.write([x for x in strings if x][0])
+N = int(input())
+strings = [input().strip() for _ in range(N)]
+
+for _ in range(N-1):
+    i,j = map(int, input().split())
+    strings[i-1] = "".join([strings[i-1], strings[j-1]])
+    strings[j-1] = ""
+for s in strings:
+    if s:
+        exit(print(s))

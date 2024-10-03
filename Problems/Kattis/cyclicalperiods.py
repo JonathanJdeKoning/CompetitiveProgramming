@@ -1,14 +1,19 @@
-from collections import defaultdict
-from math import gcd
-pos = defaultdict(list)
-length = int(input())
-order = []
-for _ in range(length):
-    num, letters = input().split()
-    num = int(num)
+N =int(input())
+seen = {}
+mx = 0
+best = None
+for _ in range(N):
+    x, s = input().split()
+    x = int(x)
 
-    for letter in letters:
-        pos[letter].append(num)
-print(pos)
-
+    for c in s:
+        if c not in seen:
+            seen[c] = x
+        else:
+            dist = x - seen[c]
+            if dist > mx:
+                mx = dist
+                best = c
+            seen[c] = x
+print(best)
 

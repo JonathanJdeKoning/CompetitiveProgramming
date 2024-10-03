@@ -1,33 +1,24 @@
-from collections import deque
+class ListNode:
+    def __init__(self, val="", next=None):
+        self.val = val
+        self.next = next
+
+
 for _ in range(int(input())):
     s = input()
-    out = deque([])
-    at_end = True
-    revme = []
+    end = ListNode()
+    curr = ListNode(next=end)
+    home = ListNode(next=curr)
+
     for c in s:
-        if c =="]":
-            out.extendleft(revme[::-1])
-            revme = []
-            at_end = True
-            continue
+        if c == "]":
+
         elif c == "[":
-            at_end = False
-            revme = []
-            continue
-        if c =="<":
-            if at_end:
-                try:
-                    out.pop()
-                except:pass
-            else:
-                try:
-                    revme.pop()
-                except: pass
+        elif c == "<":
+            
         else:
-            if at_end:
-                out.append(c)
-            else:
-                revme.append(c)
-    if revme:
-        out.extendleft(revme[::-1])
-    print("".join(out))
+            new = ListNode(val = c, next = curr.next)
+            curr.next = new
+            curr = new
+
+
