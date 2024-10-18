@@ -1,8 +1,10 @@
-for _ in range(int(input())):
-    n = int(input())
-    nums = list(map(int, input().split()))
-
-    if nums.count(max(nums))%2==0:
-        print("NO")
-    else:
+from collections import Counter
+T = int(input())
+for _ in range(T):
+    N = int(input())
+    A = list(map(int, input().split()))
+    fq = Counter(A)
+    if any(list(filter(lambda x:x%2==1, fq.values()))):
         print("YES")
+    else:
+        print("NO")

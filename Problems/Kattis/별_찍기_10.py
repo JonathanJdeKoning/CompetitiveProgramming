@@ -7,7 +7,7 @@ base = [
 def quilt(mat):
     N = len(mat)
     mat*=3
-    for i, row in enumerate(mat[:N]):
+    for i, row in enumerate(mat[:N]):1
         mat[i].extend(row*2)
     for i, row in enumerate(mat[N:2*N], start = N):
         mat[i].extend([" "]*N)
