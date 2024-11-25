@@ -1,27 +1,30 @@
 from collections import defaultdict
-from collections import deque
 for _ in range(int(input())):
-    numnodes = int(input())
-    numedges = int(input())
+    numNodes = int(input())
+    numEdges = int(input())
+
     edges = defaultdict(list)
-    for _ in range(numedges):
+    for _ in range(numEdges):
         u,v = map(int, input().split())
         edges[u].append(v)
         edges[v].append(u)
         
     components = 0
-    toexplore = list(range(numnodes))
     seen = set()
-    for exp in toexplore:
-        if exp in seen:continue
+    for node in range(numNodes):
+        if node in seen:continue
+        
         components += 1
-        q = deque([exp])
-        while q:
-            curr = q.popleft()
+        stack = [node]
+       
+        while stack:
+            curr = stack.pop()
             if curr in seen: continue
+            
             seen.add(curr)
             
             for edge in edges[curr]:
-                q.append(edge)
-    print(components -1)
+                stack.append(edge)
+    
+    print(components - 1)
     

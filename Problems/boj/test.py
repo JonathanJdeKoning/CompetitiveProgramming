@@ -1,29 +1,6 @@
-n = int(input())
-primes = [True]*(n+1)
-primes[0] = False
-primes[1] = False
+from random import randint
 
-for i in range(n+1):
-    if primes[i]:
-        for j in range(i+i, n+1, i):
-            primes[j] = False
-
-s = 0
-b = 0
-p = -1
-for i in range(1,n+1):
-    if not primes[i]:
-        b += 1
-        q = i
-    else:
-        b -= 1
-        if b <0: b=0
-        if i-p <= 2:
-            s+=1
-            if i-p==2:
-                b+=1
-        else:
-            s+= 2
-        p = i
-    print(b, s)
-
+with open("input.txt", "w") as file:
+    file.write("1")
+    file.write("100000")
+    file.write(" ".join(map(str, [randint(1,100000) for _ in range(100000)])))

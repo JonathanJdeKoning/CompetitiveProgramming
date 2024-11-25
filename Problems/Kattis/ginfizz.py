@@ -1,0 +1,1 @@
+N=int(input());print(f"{45*N} ml gin\n{30*N} ml fresh lemon juice\n{10*N} ml simple syrup\n{N} slice{"s"*int(N!=1)} of lemon")
