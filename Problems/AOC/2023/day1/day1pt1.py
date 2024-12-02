@@ -1,7 +1,6 @@
-sum= 0
+ans = 0
 with open("input.txt", "r") as file:
-    lines = file.readlines()
-    for line in lines:
-        newline = [x for x in line if x.isdigit()]
-        sum+= int(newline[0]+newline[-1])
-print(sum)
+    for line in file.readlines():
+        dig = [x for x in line if x.isdigit()]
+        ans += int(f"{dig[0]}{dig[-1]}")
+print(ans)
