@@ -1,2 +1,2 @@
-Problems/AOC/*.txt
-Problems/AOC/*.in
+Problems/AOC/**/*.txt
+Problems/AOC/**/*.in
