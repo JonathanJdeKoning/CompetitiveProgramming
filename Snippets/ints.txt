@@ -1,0 +1,2 @@
+list(map(int, input().replace(","," ").split()))
+$0

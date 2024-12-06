@@ -1,0 +1,2 @@
+print("\n".join([" ".join(map(str, row)) for row in ${1:___} ]))
+$0

@@ -1,0 +1,8 @@
+
+edges = defaultdict(list)
+for _ in range(${1:___}):
+    u, v = map(int, input().split())
+    edges[u].append(v)
+    edges[v].append(u)
+
+$0

@@ -1,0 +1,2 @@
+# Created by Jonathan de Koning on $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE [>_]
+$0

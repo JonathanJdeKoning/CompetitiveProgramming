@@ -1,0 +1,12 @@
+def condition(mid):
+    $0
+
+low = ${1:___}
+high = ${2:___}
+while low < high:
+    mid = (low + high)//2
+
+    if condition(mid):
+        high = mid
+    else:
+        low = mid + 1

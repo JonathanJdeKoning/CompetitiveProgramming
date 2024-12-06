@@ -1,4 +1,3 @@
-
 from itertools import pairwise
 def gooddiff(diff):
     if [x for x in [abs(y) for y in diff] if x < 0 or x > 3]: return False
@@ -15,10 +14,3 @@ with open("day2.in", "r") as file:
     diffs = [[(a-b) for a,b in pairwise(line)] for line in lines]
     print(len(list(filter(gooddiff, diffs))))
     print(len(list(filter(anygood,  lines))))
-        
-
-
-
-
-
-

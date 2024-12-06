@@ -1,0 +1,4 @@
+shiftCharRight = lambda c,n: chr((ord(c)-97+n)%26+97) if c.islower() else chr((ord(c)-65+n)%26+65)
+shiftCharLeft  = lambda c,n: chr((ord(c)-97-n)%26+97) if c.islower() else chr((ord(c)-65-n)%26+65)
+
+$0

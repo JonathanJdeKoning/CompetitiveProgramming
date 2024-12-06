@@ -1,0 +1,4 @@
+while True:
+    try:
+        $0        
+    except EOFError: break
