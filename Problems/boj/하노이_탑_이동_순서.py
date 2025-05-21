@@ -1,18 +1,22 @@
-n = int(input())
+from functools import cache
+N = int(input())
 
-def ans(n):
-    if n == 1:
-        print(1,3)
-        return
-    if n == 2:
-        print(1, 2)
-        print(2, 3)
-        print(1, 3)
-    if n == 3:
-        print(1, 3)
-        print(1, 2)
-        print(3, 2)
-        print(1, 3)
-        print(2, 1)
-        print(2, 3)
-        print(1, 3)
+ans = []
+def move(f, t):
+    ans.append((f,t))
+
+
+def moveVia(f,v,t):
+    move(f,v)
+    move(v,t)
+
+def hanoi(n, f, h, t):
+    if n == 0: return
+    hanoi(n-1, f, t, h)
+    move(f,t)
+    hanoi(n-1,h,f,t)
+hanoi(N, 1, 2, 3)
+
+print(len(ans))
+for f,t in ans:
+    print(f,t)

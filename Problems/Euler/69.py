@@ -1,4 +1,5 @@
-from math import gcd
+from math import gcd, inf
+from collections import Counter
 def phi(n):
     count = 0
 
@@ -7,21 +8,20 @@ def phi(n):
             count += 1
     return count
 
-ans = [0]*1000001
-for i in range(1,1001):
+ans = [0]*10000001
+for i in range(1,3163):
     p = phi(i)
     ans[i] = p
 
-for i in range(1001):
-    for j in range(1001):
-        if i*j <=1000: continue
+mnrat = inf
+for i in range(3163):
+    for j in range(3163):
+        if i*j <=3163: continue
         if gcd(i,j) ==1:
-            ans[i*j] = ans[i]*ans[j]
+            phi = ans[i]*ans[j]
+            n = i*j
+            if Counter(str(n)) == Counter(str(phi)):
+                if n/phi < mnrat:
+                    mnrat = n/phi
+                    print(n)
 
-mx = 0
-for i in range(1000001):
-    if ans[i] ==0: continue
-    val = i/ans[i]
-    if val > mx:
-        mx = val
-        print(f"{i}: {val}")

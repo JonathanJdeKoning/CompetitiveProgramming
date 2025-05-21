@@ -1,36 +1,17 @@
-import os
-from itertools import combinations, permutations
-from collections import deque, Counter, defaultdict
-########################################################
-DEBUG = os.path.isfile("C:\\Users\\jj720\\debug.txt") ##
-########################################################
+from math import inf
+N = int(input())
+A = list(map(int, input().replace(","," ").split()))
+base = sum(A)
+best = inf
+dfs = [(0, 0)]
 
-import sys 
-from math import ceil, floor
-def debug(var, name=""):
-    if DEBUG: 
-        print(f"{name.upper()}: {var}")
+while dfs:
+    cum, i = dfs.pop()
+    diff = abs(cum - (base-cum))
+    best = min(best, diff)
+    if i == len(A): continue
+    poss = A[i]
 
-def intspls(): 
-    ints = list(map(int, sys.stdin.readline().strip().split()))
-    return ints if len(ints)>1 else ints[0]
-def stringpls(): return sys.stdin.readline().strip()
-
-#####################
-def solve():
-    numapples = intspls()
-    apples = sorted(intspls(), reverse=True)
-
-    mid = len(apples)//2
-    perms = list(permutations(apples))
-    print(min([abs(sum(x[:mid])- sum(x[mid:])) for x in perms]))
-    
-
-
-
-
-
-#########################
-if __name__ == "__main__":
-    solve()
-
+    dfs.append((cum+poss, i+1))
+    dfs.append((cum, i+1))
+print(best)

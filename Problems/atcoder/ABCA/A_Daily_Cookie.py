@@ -1,0 +1,5 @@
+n,k = list(map(int, input().replace(","," ").split()))
+s = input()
+cookies = s.count("@")
+empty = s.count(".")
+print(empty + min(k, cookies))

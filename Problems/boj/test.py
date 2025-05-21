@@ -1,6 +1,19 @@
-from random import randint
+from math import floor, ceil
 
-with open("input.txt", "w") as file:
-    file.write("1")
-    file.write("100000")
-    file.write(" ".join(map(str, [randint(1,100000) for _ in range(100000)])))
+def f(n):
+    return round(175*(1-0.995**n))
+
+
+def condition(mid):
+    return f(mid) >= 101
+
+low = 0
+high = 5000
+while low < high:
+    mid = (low + high)//2
+
+    if condition(mid):
+        high = mid
+    else:
+        low = mid + 1
+print(low)

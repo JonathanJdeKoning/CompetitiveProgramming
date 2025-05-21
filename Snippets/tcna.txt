@@ -1,0 +1,4 @@
+for tc in range(int(input())):
+    N = int(input())
+    A = list(map(int, input().replace(","," ").split()))
+    $0
