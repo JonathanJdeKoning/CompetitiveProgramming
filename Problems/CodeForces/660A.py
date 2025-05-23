@@ -1,3 +1,4 @@
+
 from math import gcd
 from itertools import pairwise 
 
